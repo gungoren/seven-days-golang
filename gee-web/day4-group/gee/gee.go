@@ -35,7 +35,8 @@ func (group *RouterGroup) POST(pattern string, handler HandlerFunc) {
 	group.addRoute("POST", pattern, handler)
 }
 
-func (group *RouterGroup) addRoute(method string, pattern string, handler HandlerFunc) {
+func (group *RouterGroup) addRoute(method string, comp string, handler HandlerFunc) {
+	pattern := group.prefix + comp
 	log.Printf("Router %s - %s", method, pattern)
 	group.engine.router.addRoute(method, pattern, handler)
 }
